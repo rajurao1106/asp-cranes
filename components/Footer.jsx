@@ -47,10 +47,11 @@ export default function Footer() {
         <div className="space-y-10">
           <h3 className="font-semibold mb-8 text-lg">Services</h3>
           <ul className="space-y-4 text-sm text-gray-300">
-            <li>Elevate 2030</li>
-            <li>Safety</li>
-            <li>Projects</li>
-            <li>Contact Us</li>
+            <li>Shifting & Loading</li>
+            <li>Winch Handling</li>
+            <li>Material Handling</li>
+            <li>Jacking </li>
+            <li>Operations & Maintenance (O&M) </li>
           </ul>
         </div>
 
