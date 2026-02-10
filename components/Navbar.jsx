@@ -9,7 +9,7 @@ export default function Navbar() {
   return (
     <header className="w-full fixed top-0 z-50 bg-gray-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-16">
           
           {/* LOGO */}
           <div className="flex items-center">
@@ -17,7 +17,7 @@ export default function Navbar() {
               src={logo}
               alt="Logo"
               priority
-              className="h-18 w-auto"
+              className="h-14 w-auto"
             />
           </div>
 
@@ -33,7 +33,7 @@ export default function Navbar() {
 
           {/* DESKTOP CTA */}
           <div className="hidden lg:block">
-            <button className="bg-red-600 hover:bg-white hover:text-black rounded-sm border border-red-600 text-white text-sm font-semibold px-6 py-3 transition">
+            <button className="bg-red-600 hover:bg-white hover:text-black rounded-sm border border-red-600 text-white text-sm font-semibold px-3 py-2 transition">
               Request a Quote
             </button>
           </div>

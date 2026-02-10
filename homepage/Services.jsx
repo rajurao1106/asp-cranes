@@ -76,7 +76,7 @@ export default function Services() {
                 <p className="text-gray-600 mb-6 flex-grow">{service.desc}</p>
 
                 {/* Explore More Button */}
-                <button className="flex items-center  justify-between  pl-4  border-2 border-gray-800 rounded-sm font-semibold text-gray-900 w-fit hover:bg-red-600 hover:text-white transition group">
+                <button className="flex items-center  justify-between  pl-4  border border-gray-800 rounded-sm font-semibold text-gray-900 w-fit hover:bg-red-600 hover:text-white transition group">
                   Explore More
                   <span className="pb-2 px-4 h-full text-4xl flex ml-4 items-center justify-center bg-red-600 text-white group-hover:bg-white group-hover:text-gray-800 transition">
                     »
