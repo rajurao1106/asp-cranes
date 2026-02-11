@@ -16,7 +16,7 @@ export default function Advantages() {
               Advantages of Renting
             </h2>
             <p className="text-lg text-gray-500 mt-2">
-              through the MYCRANE platform
+              through the ASP Cranes platform
             </p>
 
             {/* For Customers */}

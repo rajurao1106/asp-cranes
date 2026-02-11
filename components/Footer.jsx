@@ -84,7 +84,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-gray-400">
         <p>
-          © Copyrights {new Date().getFullYear()} Sanghvi Movers Limited. All
+          © Copyrights {new Date().getFullYear()} ASP Cranes Limited. All
           Rights Reserved
         </p>
 
