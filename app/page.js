@@ -1,4 +1,5 @@
 import About from "@/homepage/About";
+import About2 from "@/homepage/About2";
 import Advantages from "@/homepage/Advantages";
 import CTA from "@/homepage/CTA";
 import FAQ from "@/homepage/FAQ";
@@ -20,6 +21,7 @@ export default function page() {
       <Hero />
       <WhoWeAre />
       <About />
+      <About2/>
       <WhatWeOffer />
       <Services />
       <Advantages />

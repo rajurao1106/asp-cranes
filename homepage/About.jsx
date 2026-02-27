@@ -2,9 +2,10 @@
 import React from "react";
 import about from "@/public/homepage/about.png";
 import Image from "next/image";
+import lift from "@/public/homepage/lift.png"
 export default function About() {
   return (
-    <section className="w-full bg-white py-24 relative overflow-hidden">
+    <section className="w-full bg-gray-50 py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-8">
         {/* Top Content */}
         <div className="flex max-lg:flex-col gap-10 items-start">
@@ -14,14 +15,13 @@ export default function About() {
               src={about} // replace with crane image
               alt="Crane"
               className="w-full"
-
             />
           </div>
 
           {/* Right Content */}
           <div>
-            <p className="text-sm font-semibold text-orange-500 border-b tracking-widest mb-4 relative inline-block">
-              ABOUT US
+            <p className="text-lg flex font-semibold text-red-500 gap-2 border-b tracking-widest mb-4 relative">
+             <Image src={lift} alt="" width={30} height={30} priority/> <span>ABOUT US</span>
             </p>
 
             <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mb-6">

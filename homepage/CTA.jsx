@@ -9,7 +9,6 @@ export default function CTA() {
       <div className="max-w-7xl relative mx-auto px-4 sm:px-6">
         <div className=" bg-gray-100 rounded-xl overflow-hidden">
           <div className="flex flex-col-reverse lg:flex-row items-center min-h-[360px]">
-            
             {/* LEFT CONTENT */}
             <div className="w-full lg:w-1/2 p-6 sm:p-10 z-10">
               <h2 className="text-2xl sm:text-3xl font-semibold text-black mb-4">
@@ -34,12 +33,10 @@ export default function CTA() {
               <Image
                 src={hero}
                 alt="Crane Truck"
-                
                 className="object-contain lg:object-cover"
                 priority
               />
             </div>
-
           </div>
         </div>
       </div>
