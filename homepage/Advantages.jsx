@@ -3,6 +3,7 @@ import React from "react";
 import hook from "@/public/homepage/hook.png";
 import advantages from "@/public/homepage/advantages.jpeg";
 import Image from "next/image";
+import Button1 from "@/ui/buttons/Button1";
 
 export default function Advantages() {
   return (
@@ -99,12 +100,7 @@ export default function Advantages() {
 
             {/* Button */}
             <div className="mt-10">
-              <button className="flex items-center pl-4 justify-between border-2 border-gray-800 rounded-sm font-semibold text-gray-900 w-fit hover:bg-red-600 hover:text-white transition group">
-                Register Now
-                <span className="pb-2 px-4 h-full ml-4 text-4xl flex items-center justify-center bg-red-600 text-white group-hover:bg-white group-hover:text-gray-800 transition">
-                  »
-                </span>
-              </button>
+             <Button1 button1="Register Now"/>
             </div>
           </div>
 

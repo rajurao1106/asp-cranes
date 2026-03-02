@@ -26,7 +26,7 @@ export default function Navbar() {
           <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-black">
             <NavItem label="Home" href="/" />
             <NavItem label="About Us" href="/about" />
-            <NavItem label="Our Cranes" href="/cranes" />
+            <NavItem label="Our Cranes" href="/our-cranes" />
             <NavItem label="Services" href="/services" />
             <NavItem label="Projects" href="/projects" />
             <NavItem label="Blog" href="/blog" />
@@ -61,7 +61,7 @@ export default function Navbar() {
         <nav className="flex flex-col px-6 py-4 gap-4 text-sm font-medium text-black">
           <NavItem label="Home" href="/" onClick={() => setOpen(false)} />
           <NavItem label="About Us" href="/about" onClick={() => setOpen(false)} />
-          <NavItem label="Our Cranes" href="/cranes" onClick={() => setOpen(false)} />
+          <NavItem label="Our Cranes" href="/our-cranes" onClick={() => setOpen(false)} />
           <NavItem label="Services" href="/services" onClick={() => setOpen(false)} />
           <NavItem label="Projects" href="/projects" onClick={() => setOpen(false)} />
           <NavItem label="Blog" href="/blog" onClick={() => setOpen(false)} />

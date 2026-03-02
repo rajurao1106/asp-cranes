@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import hero from "@/public/homepage/cta2.png";
+import Button1 from "@/ui/buttons/Button1";
 
 export default function CTA() {
   return (
@@ -20,12 +21,13 @@ export default function CTA() {
                 provide the most suitable equipment and pricing.
               </p>
 
-              <button className="flex items-center pl-4 bg-white justify-between border-2 border-gray-800 rounded-sm font-semibold text-gray-900 w-fit hover:bg-red-600 hover:text-white transition group">
+              {/* <button className="flex items-center pl-4 bg-white justify-between border-2 border-gray-800 rounded-sm font-semibold text-gray-900 w-fit hover:bg-red-600 hover:text-white transition group">
                 Register Now
                 <span className="pb-2 px-4 ml-4 text-4xl flex items-center justify-center bg-red-600 text-white group-hover:bg-white group-hover:text-gray-800 transition">
                   »
                 </span>
-              </button>
+              </button> */}
+              <Button1 button1="Register Now"/>
             </div>
 
             {/* RIGHT IMAGE */}

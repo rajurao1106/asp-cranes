@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Button1 from "@/ui/buttons/Button1";
 
 const filters = [
   "Architecture",
@@ -78,12 +79,7 @@ export default function ProjectsSection() {
 
         {/* Load More */}
         <div className="text-center w-full justify-center items-center flex mt-16">
-          <button className="flex items-center bg-white pl-4 justify-between border border-gray-800 rounded-sm font-semibold text-gray-900 w-fit hover:bg-red-600 hover:text-white transition group">
-              Load More
-              <span className="pb-2 px-4 h-full text-4xl flex ml-4 items-center justify-center rounded-r-sm bg-red-600 text-white group-hover:bg-white group-hover:text-gray-800 transition">
-                »
-              </span>
-            </button>
+        <Button1 button1="Load More"/>
         </div>
       </div>
     </section>
