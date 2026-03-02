@@ -40,9 +40,9 @@ export default function Blog() {
       {/* Responsive Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         {insights.map((item) => (
-          <div key={item.id} className="group cursor-pointer">
+          <div key={item.id} className="group shadow rounded-xl cursor-pointer">
             {/* Image Container with Aspect Ratio */}
-            <div className="relative aspect-video w-full mb-6 overflow-hidden rounded-xl bg-gray-200">
+            <div className="relative aspect-video w-full mb-6 overflow-hidden rounded-t-xl bg-gray-200">
               <img
                 src={item.image}
                 alt={item.title}
@@ -51,7 +51,7 @@ export default function Blog() {
             </div>
 
             {/* Content */}
-            <div className="flex flex-col items-start">
+            <div className="flex flex-col px-4 pb-4 items-start">
               <span className="mb-3 px-3 py-1 text-[10px] uppercase font-bold tracking-widest text-white bg-red-600 rounded">
                 {item.category}
               </span>

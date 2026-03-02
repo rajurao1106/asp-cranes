@@ -41,40 +41,57 @@ const cranes = [
 
 export default function Cranes() {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
-      <h2 className="text-3xl font-bold ">Our Cranes</h2>
-      <p className="text-base text-gray-700 mb-8">Engineered for heavy transport, multi-axle platforms ensure safe movement of oversized loads.</p>
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      {/* Heading */}
+      <div className="mb-8">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-2">
+          Our Cranes
+        </h2>
+        <p className="text-sm sm:text-base text-gray-600 max-w-2xl">
+          Engineered for heavy transport, multi-axle platforms ensure safe movement of oversized loads.
+        </p>
+      </div>
 
+      {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {cranes.map((crane) => (
           <div
             key={crane.id}
-            className=" flex justify-between items-center flex-col rounded-lg overflow-hidden shadow-sm hover:shadow-md transition"
+            className="flex flex-col rounded-xl overflow-hidden shadow bg-white
+                       hover:shadow-lg transition duration-300"
           >
-            {/* Image Section */}
-            <div className="relative h-48 w-full">
+            {/* Image */}
+            <div className="relative w-full h-44 sm:h-48 lg:h-52">
               <Image
-                src="/crane-placeholder.jpg" // put image in /public folder
-                alt="Crane Image"
+                src="/crane-placeholder.jpg"
+                alt={crane.name}
                 fill
                 className="object-cover"
-                priority
+                sizes="(max-width: 640px) 100vw,
+                       (max-width: 1024px) 50vw,
+                       33vw"
               />
             </div>
 
             {/* Content */}
-            <div className="p-4 ">
-              <h3 className="font-semibold text-lg">{crane.name}</h3>
-              <p className="text-sm text-gray-600">
+            <div className="flex flex-col flex-1 p-4">
+              <h3 className="font-semibold text-base sm:text-lg mb-2">
+                {crane.name}
+              </h3>
+
+              <p className="text-sm text-gray-600 flex-1">
                 {crane.description}
               </p>
 
               {/* Buttons */}
-              <div className="mt-4 flex gap-3">
-                <button className="flex-1 border border-gray-300 text-sm py-2 rounded hover:bg-gray-200 transition duration-300">
+              <div className="mt-4 flex flex-col sm:flex-row gap-3">
+                <button className="w-full border border-gray-300 text-sm py-2 rounded-md
+                                   hover:bg-gray-100 transition">
                   Download Spec
                 </button>
-                <button className="flex-1 bg-red-500 text-white text-sm py-2 rounded hover:bg-red-600 transition duration-300">
+
+                <button className="w-full bg-red-500 text-white text-sm py-2 rounded-md
+                                   hover:bg-red-600 transition">
                   Get Quote
                 </button>
               </div>
@@ -82,6 +99,6 @@ export default function Cranes() {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
