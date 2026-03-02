@@ -63,7 +63,7 @@ export default function Cranes() {
             {/* Image */}
             <div className="relative w-full h-44 sm:h-48 lg:h-52">
               <Image
-                src="/crane-placeholder.jpg"
+                src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800"
                 alt={crane.name}
                 fill
                 className="object-cover"

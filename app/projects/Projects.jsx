@@ -38,7 +38,7 @@ export default function Projects() {
   return (
     <section className="max-w-7xl mx-auto px-4 py-16 bg-white">
       {/* Heading */}
-      <div className="mb-16 border-l-8 border-red-600 pl-6">
+      <div className="mb-16">
         <h2 className="text-4xl font-bold text-gray-900 uppercase tracking-tight">
           Our Projects
         </h2>
