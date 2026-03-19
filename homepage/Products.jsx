@@ -1,6 +1,8 @@
 "use client";
 "use client";
 import React from "react";
+import Link from "next/link";
+import lift from "@/public/homepage/lift.png";
 import crane1 from "@/public/homepage/crane1.jpg";
 import crane2 from "@/public/homepage/hero1.png";
 import crane3 from "@/public/homepage/crane3.jpg";
@@ -16,6 +18,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
+import Button1 from "@/ui/buttons/Button1";
 
 export default function WhatWeOffer() {
   const services = [
@@ -24,21 +27,24 @@ export default function WhatWeOffer() {
     { title: "Crawler Cranes", img: crane3 },
     { title: "Pick & Carry Cranes", img: crane4 },
     { title: "Aerial Work Platforms (AWP)", img: crane5 },
-
     { title: "Multi-Axle Platform Trailers", img: crane6 },
   ];
 
   return (
-    <section className="w-full bg-white pb-24">
+    <section className="w-full bg-white py-24">
       <div className="max-w-6xl mx-auto px-8">
         {/* Heading */}
-        <div className="text-center mb-16">
-          <p className="text-sm font-semibold text-red-500 tracking-widest mb-3">
-            WHAT WE OFFER
-          </p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-            Provide Quality Services
-          </h2>
+        <div className="flex justify-between items-end mb-10">
+          <div className="w-[58%]">
+            <p className="text-lg flex font-bold text-red-500 gap-2 border-b tracking-widest mb-4 relative">
+              <Image src={lift} alt="" width={30} height={30} priority />
+              <span>OUR PRODUCTS</span>
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Engineered Equipment For Every Lift
+            </h2>
+          </div>
+          <Button1 button1={"See More"} />
         </div>
 
         {/* Slider */}
@@ -50,7 +56,6 @@ export default function WhatWeOffer() {
             delay: 2500, // ⏱ auto slide
             disableOnInteraction: false,
           }}
-          pagination={{ clickable: true }}
           breakpoints={{
             0: { slidesPerView: 1 },
             768: { slidesPerView: 2 },
@@ -60,26 +65,25 @@ export default function WhatWeOffer() {
         >
           {services.map((item, i) => (
             <SwiperSlide key={i}>
-              <div className="group">
+              <div className="group shadow rounded-lg m-4">
                 {/* Image */}
-                <div className="overflow-hidden rounded-sm mb-6">
+                <div className="overflow-hidden ">
                   <Image
                     src={item.img}
                     alt={item.title}
-                    className="w-full h-[340px] object-cover group-hover:scale-105 transition duration-500"
+                    className="w-full h-[340px] rounded-t-lg object-cover group-hover:scale-105 transition duration-500"
                   />
                 </div>
 
                 {/* Title + Arrow */}
-                <div className="flex items-center border rounded-sm justify-between pl-4">
+                <Link
+                  href="/"
+                  className="flex items-center rounded-sm justify-between p-4"
+                >
                   <h3 className="text-lg font-semibold text-gray-900">
                     {item.title}
                   </h3>
-
-                  <div className="w-10 h-10 bg-red-600 text-3xl pb-2 rounded-r-sm text-white flex items-center justify-center">
-                    »
-                  </div>
-                </div>
+                </Link>
               </div>
             </SwiperSlide>
           ))}

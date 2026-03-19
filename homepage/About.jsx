@@ -3,6 +3,7 @@ import React from "react";
 import about from "@/public/homepage/about.png";
 import Image from "next/image";
 import lift from "@/public/homepage/lift.png"
+import Button1 from "@/ui/buttons/Button1";
 export default function About() {
   return (
     <section className="w-full bg-gray-50 py-24 relative overflow-hidden">
@@ -52,12 +53,13 @@ export default function About() {
               approach.
             </p>
 
-            <button className="flex items-center pl-6 justify-between  border border-gray-800 rounded-sm font-semibold text-gray-900 w-fit hover:bg-red-600 hover:text-white transition group">
+            {/* <button className="flex items-center pl-6 justify-between  border border-gray-800 rounded-sm font-semibold text-gray-900 w-fit hover:bg-red-600 hover:text-white transition group">
               About Us
               <span className="pb-2 px-4 h-full ml-6 text-4xl flex items-center justify-center bg-red-600 text-white group-hover:bg-white group-hover:text-gray-800 transition">
                 »
               </span>
-            </button>
+            </button> */}
+            <Button1 button1="About Us"/>
           </div>
         </div>
       </div>

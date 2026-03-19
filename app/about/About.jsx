@@ -5,6 +5,7 @@ import { ArrowUpRight, Target, Eye } from "lucide-react";
 import about from "@/public/about/about.jpg";
 import Image from "next/image";
 import lift from "@/public/homepage/lift.png";
+import Button1 from "@/ui/buttons/Button1";
 
 const About = () => {
   return (
@@ -21,18 +22,18 @@ const About = () => {
             WE BUILD EVERYTHING THAT YOU NEED
           </h1>
 
-          <p className="text-slate-600 text-lg leading-relaxed max-w-xl">
+          <p className="text-slate-600 text-lg leading-relaxed mb-4 max-w-xl">
             ASP Cranes is a leading crane rental and heavy lifting service
             provider, delivering professional solutions to India’s
             infrastructure and industrial sectors. Our operations are driven by
             technical expertise, safety awareness, and customer satisfaction.
           </p>
-          <p className="text-slate-600 text-lg leading-relaxed max-w-xl mb-4">
+          {/* <p className="text-slate-600 text-lg leading-relaxed max-w-xl mb-4">
             ASP Cranes is a leading crane rental and heavy lifting service
             provider, delivering professional solutions to India’s
             infrastructure and industrial sectors. Our operations are driven by
             technical expertise, safety awareness, and customer satisfaction.
-          </p>
+          </p> */}
 
           <ul className="space-y-4 mb-4">
             <li className="flex items-center gap-3 text-slate-800 font-semibold">
@@ -97,12 +98,13 @@ const About = () => {
             </div>
           </div>
 
-          <button className="flex items-center pl-6 justify-between border border-gray-800 rounded-sm font-semibold text-gray-900 w-fit hover:bg-red-600 hover:text-white transition group">
+          {/* <button className="flex items-center pl-6 justify-between border border-gray-800 rounded-sm font-semibold text-gray-900 w-fit hover:bg-red-600 hover:text-white transition group">
             Explore Our Company
             <span className="pb-2 px-4 h-full ml-6 text-4xl flex items-center justify-center bg-red-600 text-white group-hover:bg-white group-hover:text-gray-800 transition">
               »
             </span>
-          </button>
+          </button> */}
+          <Button1 button1="About Us"/>
         </div>
 
         {/* Right Image Side */}

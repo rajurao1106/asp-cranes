@@ -2,6 +2,7 @@
 import Button1 from "@/ui/buttons/Button1";
 import Image from "next/image";
 import React from "react";
+import lift from "@/public/homepage/lift.png";
 
 const services = [
   {
@@ -41,15 +42,19 @@ export default function Services() {
     <section className="w-full py-24">
       <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
-        <div className="text-center mb-16">
-          <p className="text-red-600 font-semibold uppercase tracking-wider">
-            Our Services
+       
+        <div className="flex justify-between items-center">
+           <div className="w-[58%] mb-16">
+          <p className="text-lg flex font-bold text-red-500 gap-2 border-b tracking-widest mb-4 relative">
+            <Image src={lift} alt="" width={30} height={30} priority />
+            <span>OUR SERVICES</span>
           </p>
-          <h2 className="text-3xl text-gray-900 mt-2">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
             Reliable Solutions for Heavy & Industrial Operations
           </h2>
         </div>
-
+          <Button1 button1={"See More"} />
+        </div>
         {/* Services Grid */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
@@ -77,7 +82,7 @@ export default function Services() {
                 <p className="text-gray-600 mb-6 flex-grow">{service.desc}</p>
 
                 {/* Explore More Button */}
-                <Button1 button1="Explore More"/>
+                {/* <Button1 button1="Explore More" /> */}
               </div>
             </div>
           ))}
