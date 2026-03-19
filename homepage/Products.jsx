@@ -34,17 +34,18 @@ export default function WhatWeOffer() {
     <section className="w-full bg-white py-24">
       <div className="max-w-6xl mx-auto px-8">
         {/* Heading */}
+
         <div className="flex justify-between items-end mb-10">
-          <div className="w-[58%]">
-            <p className="text-lg flex font-bold text-red-500 gap-2 border-b tracking-widest mb-4 relative">
+          <div className="">
+            <p className="text-lg inline-flex font-bold text-red-500 gap-2 border-b tracking-widest mb-4 relative">
               <Image src={lift} alt="" width={30} height={30} priority />
-              <span>OUR PRODUCTS</span>
+              <span>OUR CRANES</span>
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
               Engineered Equipment For Every Lift
             </h2>
           </div>
-          <Button1 button1={"See More"} />
+          <Button1 button1={"See More"} link="/our-cranes" />
         </div>
 
         {/* Slider */}

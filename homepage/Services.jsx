@@ -42,18 +42,18 @@ export default function Services() {
     <section className="w-full py-24">
       <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
-       
-        <div className="flex justify-between items-center">
-           <div className="w-[58%] mb-16">
-          <p className="text-lg flex font-bold text-red-500 gap-2 border-b tracking-widest mb-4 relative">
-            <Image src={lift} alt="" width={30} height={30} priority />
-            <span>OUR SERVICES</span>
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Reliable Solutions for Heavy & Industrial Operations
-          </h2>
-        </div>
-          <Button1 button1={"See More"} />
+
+        <div className="flex justify-between items-center mb-10">
+          <div className="">
+            <p className="text-lg inline-flex font-bold text-red-500 gap-2 border-b tracking-widest mb-4 relative">
+              <Image src={lift} alt="" width={30} height={30} priority />
+              <span>OUR SERVICES</span>
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+              Reliable Solutions for Heavy & <br /> Industrial Operations
+            </h2>
+          </div>
+          <Button1 button1={"See More"} link="/our-cranes" />
         </div>
         {/* Services Grid */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

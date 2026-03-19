@@ -5,12 +5,13 @@ import FAQ from "@/homepage/FAQ";
 import Hero from "@/Backup/Hero";
 import HeroCrane from "@/Backup/Hero2";
 import HeroSlider from "@/homepage/Hero";
-import OurClients from "@/homepage/Clients";
+import Clients from "@/homepage/Clients";
 import Projects from "@/homepage/Projects";
 import Services from "@/homepage/Services";
 import OurProducts from "@/homepage/Products";
 import WhoWeAre from "@/homepage/WhoWeAre";
 import React from "react";
+import Blog from "./blog/Blog";
 
 export default function page() {
   return (
@@ -22,7 +23,8 @@ export default function page() {
       <Services />
       <Projects />
       <Advantages />
-      <OurClients />
+      <Clients />
+      <Blog/>
       <FAQ />
       <CTA />
     </div>
