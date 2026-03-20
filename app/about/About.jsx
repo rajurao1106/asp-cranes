@@ -13,10 +13,12 @@ const About = () => {
       <div className="max-w-7xl mx-auto flex flex-col max-lg:flex-col-reverse lg:flex-row gap-12 items-center">
         {/* Left Content Side */}
         <div className="w-full lg:w-1/2 ">
-          <p className="text-lg flex font-semibold text-red-500 gap-2 border-b tracking-widest mb-4 relative">
-            <Image src={lift} alt="" width={30} height={30} priority />{" "}
-            <span>ABOUT US</span>
-          </p>
+         
+            <p className="text-lg inline-flex font-bold text-red-500 gap-2 border-b tracking-widest mb-4 relative">
+              <Image src={lift} alt="" width={30} height={30} priority />
+              <span>ABOUT US</span>
+            </p>
+         
 
           <h1 className="text-4xl md:text-6xl font-semibold text-slate-900 mb-4 leading-tight">
             WE BUILD EVERYTHING THAT YOU NEED
@@ -104,7 +106,7 @@ const About = () => {
               »
             </span>
           </button> */}
-          <Button1 button1="About Us"/>
+          <Button1 button1="About Us" />
         </div>
 
         {/* Right Image Side */}

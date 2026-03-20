@@ -107,13 +107,12 @@ export default function Hero() {
                 </p>
 
                 <div className="flex flex-col w-full sm:flex-row gap-4 max-lg:items-center">
-                  <button className="flex items-center  bg-white max-lg:pl-12 pl-4 justify-between border border-gray-800 rounded-md font-semibold text-gray-900 hover:bg-red-600 hover:text-white transition group">
+                  <a href="" className="flex items-center  bg-white max-lg:pl-12 pl-4 justify-between border border-gray-800 rounded-md font-semibold text-gray-900 hover:bg-red-600 hover:text-white transition group">
                     About Company
                     <span className="px-4 py-2 max-lg:ml-12 ml-4 text-2xl rounded-r-md bg-red-600 text-white group-hover:bg-white group-hover:text-gray-800 transition">
                       »
                     </span>
-                  </button>
-
+                  </a>
                   <button className="bg-white border text-black  hover:text-white hover:bg-red-600 transition max-lg:px-20 px-10 py-3 rounded-md font-semibold">
                     Get a Quote
                   </button>
