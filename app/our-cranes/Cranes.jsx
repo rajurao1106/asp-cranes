@@ -80,20 +80,22 @@ const durationOptions = ["1-7 Days", "1 Month", "2 Months", "3 Months", "4-6 Mon
 export default function Cranes() {
   const [openId, setOpenId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showMore, setShowMore] = useState(false);
   const [selectedCrane, setSelectedCrane] = useState("");
   const [formData, setFormData] = useState({
     companyName: "",
     contactPerson: "",
+    contactNumber: "",
     designation: "",
     typeOfWork: "",
     location: "",
     startDate: "",
     noOfShifts: "1",
-    shiftHours: "8hrs", // RESTORED
+    shiftHours: "8hrs",
     duration: "",
-    modelType: "", // RESTORED
+    modelType: "",
     reqCapacity: "",
-    loadWeight: "", 
+    loadWeight: "",
     reqRadius: "",
     maxHeight: "",
   });
@@ -103,11 +105,19 @@ export default function Cranes() {
   const openQuoteForm = (craneName) => {
     setSelectedCrane(craneName);
     setIsModalOpen(true);
+    setShowMore(false);
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Submitted:", formData);
+    alert("Quote request submitted successfully!");
+    setIsModalOpen(false);
   };
 
   return (
@@ -123,13 +133,13 @@ export default function Cranes() {
             <div className="p-4 flex-1 flex flex-col">
               <h3 className="font-bold text-lg">{crane.name}</h3>
               <p className="text-sm text-gray-600 mb-2">{crane.description}</p>
-              
-              {/* <button onClick={() => toggle(crane.id)} className="text-red-500 text-sm font-bold mb-3 text-left hover:underline">
+
+              <button onClick={() => toggle(crane.id)} className="text-red-500 text-sm font-bold mb-3 text-left hover:underline">
                 {openId === crane.id ? "✕ Close Details" : "→ See Details"}
-              </button> */}
+              </button>
 
               {openId === crane.id && (
-                <ul className="bg-gray-50 p-3 rounded mb-4 text-sm space-y-1">
+                <ul className="bg-gray-50 p-3 rounded mb-4 text-sm space-y-1 animate-in fade-in duration-300">
                   {Object.entries(crane.specs).map(([key, val]) => (
                     <li key={key} className="flex justify-between border-b border-gray-100 last:border-0 py-1">
                       <span className="font-medium text-gray-500">{key}</span>
@@ -140,7 +150,6 @@ export default function Cranes() {
               )}
 
               <div className="mt-auto flex gap-2">
-                {/* <button className="flex-1 border py-2 rounded text-sm hover:bg-gray-100 transition">Download Spec</button> */}
                 <button onClick={() => openQuoteForm(crane.name)} className="flex-1 bg-red-500 text-white py-2 rounded text-sm font-bold hover:bg-red-600 transition">
                   Get Quote
                 </button>
@@ -153,88 +162,128 @@ export default function Cranes() {
       {/* --- QUOTE MODAL --- */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-          <div className="bg-white rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
-            <div className="p-6 border-b flex justify-between items-center sticky top-0 bg-white z-20">
+          <div className="bg-white rounded-xl w-full max-w-2xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
+            {/* Header (Sticky Top) */}
+            <div className="p-6 border-b flex justify-between items-center bg-white z-20">
               <h3 className="text-xl font-bold">Request Quote: {selectedCrane}</h3>
-              <button onClick={() => setIsModalOpen(false)} className="text-3xl text-gray-400 hover:text-black">&times;</button>
+              <button onClick={() => setIsModalOpen(false)} className="text-3xl text-gray-400 hover:text-black">
+                &times;
+              </button>
             </div>
 
-            <form className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-1">
-                <label className="text-xs font-bold uppercase text-gray-500">Company Name</label>
-                <input type="text" name="companyName" onChange={handleInputChange} className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="Enter company" />
-              </div>
-              <div className="space-y-1">
-                <label className="text-xs font-bold uppercase text-gray-500">Contact Person</label>
-                <input type="text" name="contactPerson" onChange={handleInputChange} className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="Your Name" />
-              </div>
-              <div className="space-y-1">
-                <label className="text-xs font-bold uppercase text-gray-500">Designation</label>
-                <input type="text" name="designation" onChange={handleInputChange} className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="Manager/Site-head" />
-              </div>
-              <div className="space-y-1">
-                <label className="text-xs font-bold uppercase text-gray-500">Model / Type Required</label>
-                <input type="text" name="modelType" onChange={handleInputChange} className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="e.g. Hammerhead, Luffing" />
-              </div>
-
-              {/* TECHNICAL SECTION */}
-              <div className="md:col-span-2 bg-gray-50 p-4 rounded-lg border border-gray-200">
-                <h4 className="text-xs font-bold text-gray-600 uppercase mb-3">Technical Requirements</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-bold text-red-600 uppercase">Req. Crane Capacity (MT)</label>
-                    <input type="text" name="reqCapacity" onChange={handleInputChange} className="w-full border p-2 rounded bg-white outline-none focus:border-red-500" placeholder="Capacity of Crane" />
-                  </div>
-                  <div className="space-y-1">
-                    <label className="text-[10px] font-bold text-blue-600 uppercase">Actual Load Weight (MT)</label>
-                    <input type="text" name="loadWeight" onChange={handleInputChange} className="w-full border p-2 rounded bg-white outline-none focus:border-blue-500" placeholder="Weight of Cargo" />
-                  </div>
-                </div>
+            {/* Scrollable Form Body */}
+            <div className="overflow-y-auto flex-1 p-6">
+              <form id="quote-form" onSubmit={handleSubmit}>
+                {/* BASIC DETAILS */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-[10px] font-bold uppercase text-gray-500">Working Radius (Mtr)</label>
-                    <input type="text" name="reqRadius" onChange={handleInputChange} className="w-full border p-2 rounded bg-white outline-none focus:border-red-500" placeholder="Radius" />
+                    <label className="text-xs font-bold uppercase text-gray-500">Company Name</label>
+                    <input type="text" name="companyName" onChange={handleInputChange} required className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="Enter company" />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[10px] font-bold uppercase text-gray-500">Max Height (Mtr)</label>
-                    <input type="text" name="maxHeight" onChange={handleInputChange} className="w-full border p-2 rounded bg-white outline-none focus:border-red-500" placeholder="Height" />
+                    <label className="text-xs font-bold uppercase text-gray-500">Enter Name</label>
+                    <input type="text" name="contactPerson" onChange={handleInputChange} required className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="Your Name" />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold uppercase text-gray-500">Contact Number</label>
+                    <input type="tel" name="contactNumber" onChange={handleInputChange} required className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="+91 00000 00000" />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold uppercase text-gray-500">Designation</label>
+                    <input type="text" name="designation" onChange={handleInputChange} className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="Manager/Site-head" />
                   </div>
                 </div>
-              </div>
 
-              <div className="space-y-1">
-                <label className="text-xs font-bold uppercase text-gray-500">Type of Work</label>
-                <select name="typeOfWork" onChange={handleInputChange} className="w-full border p-2 rounded outline-none bg-white">
-                  <option value="">Select Work Type</option>
-                  {typeOfWorkOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                </select>
-              </div>
-              <div className="space-y-1">
-                <label className="text-xs font-bold uppercase text-gray-500">Location</label>
-                <input type="text" name="location" onChange={handleInputChange} className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="Address" />
-              </div>
-              <div className="space-y-1">
-                <label className="text-xs font-bold uppercase text-gray-500">No. of Shifts</label>
-                <input type="number" name="noOfShifts" onChange={handleInputChange} defaultValue="1" className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" />
-              </div>
-              <div className="space-y-1">
-                <label className="text-xs font-bold uppercase text-gray-500">Shift Hours</label>
-                <input type="text" name="shiftHours" onChange={handleInputChange} placeholder="e.g. 8hrs, 12hrs, 24hrs" className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" />
-              </div>
-              <div className="md:col-span-2 space-y-1">
-                <label className="text-xs font-bold uppercase text-gray-500">Required Duration</label>
-                <select name="duration" onChange={handleInputChange} className="w-full border p-2 rounded outline-none bg-white">
-                  <option value="">Select Duration</option>
-                  {durationOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                </select>
-              </div>
+                {/* TOGGLE BUTTON */}
+                {!showMore && (
+                  <button 
+                    type="button" 
+                    onClick={() => setShowMore(true)}
+                    className="mt-6 w-full py-2 border-2 border-dashed border-red-500 text-red-500 font-bold rounded-lg hover:bg-red-50 transition"
+                  >
+                    + Add Technical & Site Details (Optional)
+                  </button>
+                )}
 
-              <div className="md:col-span-2 mt-4">
-                <button type="submit" className="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition shadow-lg">
-                  Submit Quote Request
-                </button>
-              </div>
-            </form>
+                {/* HIDDEN DETAILS */}
+                {showMore && (
+                  <div className="mt-6 space-y-4 animate-in slide-in-from-top-2 duration-300">
+                    <div className="space-y-1">
+                      <label className="text-xs font-bold uppercase text-gray-500">Model / Type Required</label>
+                      <input type="text" name="modelType" onChange={handleInputChange} className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="e.g. Hammerhead, Luffing" />
+                    </div>
+
+                    <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                      <h4 className="text-xs font-bold text-gray-600 uppercase mb-3">Technical Requirements</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold text-red-600 uppercase">Req. Crane Capacity (MT)</label>
+                          <input type="text" name="reqCapacity" onChange={handleInputChange} className="w-full border p-2 rounded bg-white" placeholder="Capacity" />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold text-blue-600 uppercase">Actual Load Weight (MT)</label>
+                          <input type="text" name="loadWeight" onChange={handleInputChange} className="w-full border p-2 rounded bg-white" placeholder="Weight" />
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold uppercase text-gray-500">Working Radius (Mtr)</label>
+                          <input type="text" name="reqRadius" onChange={handleInputChange} className="w-full border p-2 rounded bg-white" placeholder="Radius" />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold uppercase text-gray-500">Max Height (Mtr)</label>
+                          <input type="text" name="maxHeight" onChange={handleInputChange} className="w-full border p-2 rounded bg-white" placeholder="Height" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-4">
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold uppercase text-gray-500">Type of Work</label>
+                        <select name="typeOfWork" onChange={handleInputChange} className="w-full border p-2 rounded bg-white">
+                          <option value="">Select Work Type</option>
+                          {typeOfWorkOptions.map((opt) => (
+                            <option key={opt} value={opt}>{opt}</option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold uppercase text-gray-500">Location</label>
+                        <input type="text" name="location" onChange={handleInputChange} className="w-full border p-2 rounded" placeholder="Address" />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold uppercase text-gray-500">No. of Shifts</label>
+                        <input type="number" name="noOfShifts" onChange={handleInputChange} defaultValue="1" className="w-full border p-2 rounded" />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold uppercase text-gray-500">Shift Hours</label>
+                        <input type="text" name="shiftHours" onChange={handleInputChange} placeholder="e.g. 8hrs" className="w-full border p-2 rounded" />
+                      </div>
+                      <div className="md:col-span-2 space-y-1">
+                        <label className="text-xs font-bold uppercase text-gray-500">Required Duration</label>
+                        <select name="duration" onChange={handleInputChange} className="w-full border p-2 rounded bg-white">
+                          <option value="">Select Duration</option>
+                          {durationOptions.map((opt) => (
+                            <option key={opt} value={opt}>{opt}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </form>
+            </div>
+
+            {/* Sticky Submit Button Footer */}
+            <div className="p-4 border-t bg-white sticky bottom-0 z-20 shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
+              <button 
+                type="submit" 
+                form="quote-form" // This links the button to the form inside the scrollable area
+                className="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition shadow-lg"
+              >
+                Submit Quote Request
+              </button>
+            </div>
           </div>
         </div>
       )}
