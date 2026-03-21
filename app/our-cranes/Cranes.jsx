@@ -7,104 +7,141 @@ const cranes = [
   {
     id: 1,
     name: "Tower Crane",
-    description:
-      "Tower cranes provide exceptional height and lifting capacity for high-rise and large-scale construction projects.",
+    description: "Tower cranes provide exceptional height and lifting capacity for high-rise and large-scale construction projects.",
     specs: {
+      "Model/Type": "Hammerhead / Luffing",
       "Lifting Capacity": "350 MT",
+      "Unladen Weight": "70.7 MT",
       "Main Boom Length": "63 Mtr",
       "Jib Length": "30 Mtr",
-      "Unladen Weight": "70.7",
       "Counter Weight": "100 MT",
-      "Overall Length (Including Boom)": "19.68 Mtr",
-      "Overall Width (Including Outrigger)": "8.5 Mtr",
     },
   },
   {
     id: 2,
-    name: "Crawler Crane",
-    description:
-      "Designed for super-heavy lifting, crawler cranes deliver unmatched stability and performance.",
+    name: "Truck-Mounted Crane",
+    description: "Highly mobile cranes designed for quick setup and transportation between multiple job sites.",
     specs: {
+      "Model/Type": "Telescopic Hydraulic",
+      "Lifting Capacity": "50 MT - 500 MT",
+      "Gross Vehicle Weight": "Approx 48 MT",
+      "Mobility": "On-Road High Speed",
+    },
+  },
+  {
+    id: 3,
+    name: "Crawler Crane",
+    description: "Designed for super-heavy lifting, crawler cranes deliver unmatched stability and performance.",
+    specs: {
+      "Model/Type": "Lattice Boom Crawler",
       "Lifting Capacity": "350 MT",
+      "Operating Weight": "Approx 210 MT",
       "Main Boom Length": "63 Mtr",
-      "Jib Length": "30 Mtr",
-      "Unladen Weight": "70.7",
-      "Counter Weight": "100 MT",
-      "Overall Length (Including Boom)": "19.68 Mtr",
-      "Overall Width (Including Outrigger)": "8.5 Mtr",
+    },
+  },
+  {
+    id: 4,
+    name: "Pick & Carry Crane",
+    description: "Versatile, articulated cranes used for moving loads over short distances without outriggers.",
+    specs: {
+      "Model/Type": "Articulated / Next-Gen",
+      "Lifting Capacity": "9 MT - 30 MT",
+      "Unladen Weight": "12 MT - 20 MT",
+      "Steering": "Articulated",
+    },
+  },
+  {
+    id: 5,
+    name: "Aerial Work Platform (AWP)",
+    description: "Provides safe temporary access for people or equipment to inaccessible heights.",
+    specs: {
+      "Model/Type": "Boom / Scissor Lift",
+      "Platform Capacity": "230 kg - 450 kg",
+      "Machine Weight": "Approx 15 MT",
+      "Power": "Electric / Diesel",
+    },
+  },
+  {
+    id: 6,
+    name: "Multi-Axle Platform Trailer",
+    description: "Heavy-duty modular trailers designed for transporting oversized and ultra-heavy cargo.",
+    specs: {
+      "Model/Type": "Hydraulic Modular Trailer",
+      "Payload Capacity": "500+ MT",
+      "Tare Weight": "Approx 3.5 MT/Axle",
+      "Axles": "Modular Configuration",
     },
   },
 ];
 
+const typeOfWorkOptions = ["General Construction", "Erection (Tower)", "Loading/Unloading", "Material Handling", "Concrete Pouring", "Other"];
+const durationOptions = ["1-7 Days", "1 Month", "2 Months", "3 Months", "4-6 Months", "6+ Months (Long Term)"];
+
 export default function Cranes() {
   const [openId, setOpenId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCrane, setSelectedCrane] = useState("");
+  const [formData, setFormData] = useState({
+    companyName: "",
+    contactPerson: "",
+    designation: "",
+    typeOfWork: "",
+    location: "",
+    startDate: "",
+    noOfShifts: "1",
+    shiftHours: "8hrs", // RESTORED
+    duration: "",
+    modelType: "", // RESTORED
+    reqCapacity: "",
+    loadWeight: "", 
+    reqRadius: "",
+    maxHeight: "",
+  });
 
-  const toggle = (id) => {
-    setOpenId(openId === id ? null : id);
+  const toggle = (id) => setOpenId(openId === id ? null : id);
+
+  const openQuoteForm = (craneName) => {
+    setSelectedCrane(craneName);
+    setIsModalOpen(true);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <div className="mb-8">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-2">
-          Our Cranes
-        </h2>
-      </div>
+    <section className="max-w-7xl mx-auto px-4 py-10">
+      <h2 className="text-3xl font-bold mb-8">Our Fleet</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {cranes.map((crane) => (
-          <div
-            key={crane.id}
-            className="flex flex-col rounded-xl overflow-hidden shadow bg-white hover:shadow-lg transition"
-          >
-            {/* Image */}
-            <div className="relative w-full h-44">
-              <Image
-                src="https://images.unsplash.com/photo-1504307651254-35680f356dfd"
-                alt={crane.name}
-                fill
-                className="object-cover"
-              />
+          <div key={crane.id} className="border rounded-xl shadow bg-white overflow-hidden flex flex-col">
+            <div className="relative h-44 bg-gray-200">
+              <Image src="https://images.unsplash.com/photo-1504307651254-35680f356dfd" alt={crane.name} fill className="object-cover" />
             </div>
+            <div className="p-4 flex-1 flex flex-col">
+              <h3 className="font-bold text-lg">{crane.name}</h3>
+              <p className="text-sm text-gray-600 mb-2">{crane.description}</p>
+              
+              {/* <button onClick={() => toggle(crane.id)} className="text-red-500 text-sm font-bold mb-3 text-left hover:underline">
+                {openId === crane.id ? "✕ Close Details" : "→ See Details"}
+              </button> */}
 
-            {/* Content */}
-            <div className="p-4 flex flex-col flex-1">
-              <h3 className="font-semibold text-lg mb-2">
-                {crane.name}
-              </h3>
-
-              {/* Description */}
-              <p className="text-sm text-gray-600">
-                {crane.description}
-              </p>
-
-              {/* Show More Button */}
-              <button
-                onClick={() => toggle(crane.id)}
-                className="text-red-500 text-sm mt-2 text-left hover:underline"
-              >
-                {openId === crane.id ? "Close Details" : "See Details"}
-              </button>
-
-              {/* Specs (Toggle) */}
               {openId === crane.id && (
-                <ul className="mt-3 text-sm text-gray-700 space-y-1">
-                  {Object.entries(crane.specs).map(([key, value]) => (
-                    <li key={key} className="flex justify-between">
-                      <span className="font-medium">{key}</span>
-                      <span>{value}</span>
+                <ul className="bg-gray-50 p-3 rounded mb-4 text-sm space-y-1">
+                  {Object.entries(crane.specs).map(([key, val]) => (
+                    <li key={key} className="flex justify-between border-b border-gray-100 last:border-0 py-1">
+                      <span className="font-medium text-gray-500">{key}</span>
+                      <span className="font-bold text-gray-800">{val}</span>
                     </li>
                   ))}
                 </ul>
               )}
 
-              {/* Buttons */}
-              <div className="mt-4 flex gap-3">
-                <button className="w-full border border-gray-300 text-sm py-2 rounded-md hover:bg-gray-100">
-                  Download Spec
-                </button>
-
-                <button className="w-full bg-red-500 text-white text-sm py-2 rounded-md hover:bg-red-600">
+              <div className="mt-auto flex gap-2">
+                {/* <button className="flex-1 border py-2 rounded text-sm hover:bg-gray-100 transition">Download Spec</button> */}
+                <button onClick={() => openQuoteForm(crane.name)} className="flex-1 bg-red-500 text-white py-2 rounded text-sm font-bold hover:bg-red-600 transition">
                   Get Quote
                 </button>
               </div>
@@ -112,6 +149,95 @@ export default function Cranes() {
           </div>
         ))}
       </div>
+
+      {/* --- QUOTE MODAL --- */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+          <div className="bg-white rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div className="p-6 border-b flex justify-between items-center sticky top-0 bg-white z-20">
+              <h3 className="text-xl font-bold">Request Quote: {selectedCrane}</h3>
+              <button onClick={() => setIsModalOpen(false)} className="text-3xl text-gray-400 hover:text-black">&times;</button>
+            </div>
+
+            <form className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-1">
+                <label className="text-xs font-bold uppercase text-gray-500">Company Name</label>
+                <input type="text" name="companyName" onChange={handleInputChange} className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="Enter company" />
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-bold uppercase text-gray-500">Contact Person</label>
+                <input type="text" name="contactPerson" onChange={handleInputChange} className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="Your Name" />
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-bold uppercase text-gray-500">Designation</label>
+                <input type="text" name="designation" onChange={handleInputChange} className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="Manager/Site-head" />
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-bold uppercase text-gray-500">Model / Type Required</label>
+                <input type="text" name="modelType" onChange={handleInputChange} className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="e.g. Hammerhead, Luffing" />
+              </div>
+
+              {/* TECHNICAL SECTION */}
+              <div className="md:col-span-2 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                <h4 className="text-xs font-bold text-gray-600 uppercase mb-3">Technical Requirements</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-bold text-red-600 uppercase">Req. Crane Capacity (MT)</label>
+                    <input type="text" name="reqCapacity" onChange={handleInputChange} className="w-full border p-2 rounded bg-white outline-none focus:border-red-500" placeholder="Capacity of Crane" />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-bold text-blue-600 uppercase">Actual Load Weight (MT)</label>
+                    <input type="text" name="loadWeight" onChange={handleInputChange} className="w-full border p-2 rounded bg-white outline-none focus:border-blue-500" placeholder="Weight of Cargo" />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-bold uppercase text-gray-500">Working Radius (Mtr)</label>
+                    <input type="text" name="reqRadius" onChange={handleInputChange} className="w-full border p-2 rounded bg-white outline-none focus:border-red-500" placeholder="Radius" />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-bold uppercase text-gray-500">Max Height (Mtr)</label>
+                    <input type="text" name="maxHeight" onChange={handleInputChange} className="w-full border p-2 rounded bg-white outline-none focus:border-red-500" placeholder="Height" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-xs font-bold uppercase text-gray-500">Type of Work</label>
+                <select name="typeOfWork" onChange={handleInputChange} className="w-full border p-2 rounded outline-none bg-white">
+                  <option value="">Select Work Type</option>
+                  {typeOfWorkOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                </select>
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-bold uppercase text-gray-500">Location</label>
+                <input type="text" name="location" onChange={handleInputChange} className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" placeholder="Address" />
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-bold uppercase text-gray-500">No. of Shifts</label>
+                <input type="number" name="noOfShifts" onChange={handleInputChange} defaultValue="1" className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" />
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-bold uppercase text-gray-500">Shift Hours</label>
+                <input type="text" name="shiftHours" onChange={handleInputChange} placeholder="e.g. 8hrs, 12hrs, 24hrs" className="w-full border p-2 rounded outline-none focus:ring-1 focus:ring-red-500" />
+              </div>
+              <div className="md:col-span-2 space-y-1">
+                <label className="text-xs font-bold uppercase text-gray-500">Required Duration</label>
+                <select name="duration" onChange={handleInputChange} className="w-full border p-2 rounded outline-none bg-white">
+                  <option value="">Select Duration</option>
+                  {durationOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                </select>
+              </div>
+
+              <div className="md:col-span-2 mt-4">
+                <button type="submit" className="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition shadow-lg">
+                  Submit Quote Request
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
