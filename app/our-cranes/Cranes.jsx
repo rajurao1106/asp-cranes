@@ -134,9 +134,9 @@ export default function Cranes() {
               <h3 className="font-bold text-lg">{crane.name}</h3>
               <p className="text-sm text-gray-600 mb-2">{crane.description}</p>
 
-              <button onClick={() => toggle(crane.id)} className="text-red-500 text-sm font-bold mb-3 text-left hover:underline">
+              {/* <button onClick={() => toggle(crane.id)} className="text-red-500 text-sm font-bold mb-3 text-left hover:underline">
                 {openId === crane.id ? "✕ Close Details" : "→ See Details"}
-              </button>
+              </button> */}
 
               {openId === crane.id && (
                 <ul className="bg-gray-50 p-3 rounded mb-4 text-sm space-y-1 animate-in fade-in duration-300">
